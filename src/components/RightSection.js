@@ -80,8 +80,9 @@ function RightSection() {
               facts.
             </p>
             <span className="text-gray-200 underline underline-offset-2">
-              This is a skills demonstrative project made by Suryansh Kapoor. It may respond slow at first as it is using free resources.
+              This is a skills demonstrative project made by Suryansh Kapoor.
             </span>
+            <p>Free instance types (server) will spin-down after 15 minutes of inactivity, then will spin back up when the next request is made, and that restart can take some time.</p>
           </div>
         </div>
       </main>
