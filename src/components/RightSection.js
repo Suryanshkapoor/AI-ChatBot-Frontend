@@ -62,22 +62,25 @@ function RightSection() {
             <div className="relative flex h-full flex-1 flex-col">
               <div className="flex flex-col w-full flex-grow py-3 relative border border-black/10 dark:border-gray-900/50 text-white rounded-md bg-[rgba(64,65,79, var(--tw-bg-opacity))]">
                 <input
-                  className="m-0 w-full resize-none border-0 bg-transparent pl-4 focus:ring-0 focus-visible:ring-0 outline-none overflow-y-hidden h-[23px]"
+                  className="m-0 rounded-2xl w-full resize-none border border-gray-400 bg-transparent p-5 pl-9 focus:ring-0 focus-visible:ring-0 outline-none overflow-y-hidden h-[23px]"
                   value={prompt}
                   onChange={(e) => {
                     setPrompt(e.target.value);
                   }}
                 />
-                <button className="absolute p-1 rounded-md text-gray-400 bottom-2.5 right-2 hover:bg-black">
+                <button className="absolute p-1 rounded-md text-gray-400 bottom-5 right-2 hover:bg-black">
                   <PlaneIcon />
                 </button>
               </div>
             </div>
           </form>
-          <div className="text-center text-xs text-gray-100/50 px-4 pt-3 pb-6">
-            <span>
+          <div className="text-center text-xs text-gray-100/50 px-4 pt-1 pb-6">
+            <p>
               ChatGPT may produce inaccurate information about people, places or
               facts.
+            </p>
+            <span className="text-gray-200 underline underline-offset-2">
+              This is a skills demonstrative project made by Suryansh Kapoor. It may respond slow at first as it is using free resources.
             </span>
           </div>
         </div>
