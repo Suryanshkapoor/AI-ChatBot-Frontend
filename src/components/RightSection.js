@@ -75,10 +75,6 @@ function RightSection() {
             </div>
           </form>
           <div className="text-center text-xs text-gray-100/50 px-4 pt-1 pb-6">
-            <p>
-              ChatGPT may produce inaccurate information about people, places or
-              facts.
-            </p>
             <span className="text-gray-200 underline underline-offset-2">
               This is a skills demonstrative project made by Suryansh Kapoor.
             </span>
