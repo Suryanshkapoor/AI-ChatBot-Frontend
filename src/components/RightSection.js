@@ -6,13 +6,17 @@ function RightSection() {
   const [prompt, setPrompt] = useState("");
   const [answer, setanswer] = useState([]);
   const [question, setQuestion] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+
+
 
   const handleStreamingResponse = async (response) => {
     
     
     for (const word of response) {
       setanswer((prevanswer) => [...prevanswer, word]);
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await new Promise(resolve => setTimeout(resolve, 20));
     }
   };
 
@@ -21,6 +25,7 @@ function RightSection() {
     e.preventDefault();
     setPrompt("");
     setanswer([]);
+    setLoading(true);
 
     try {
       const res = await fetch("https://ai-server-q4ey.onrender.com/api/chat", {
@@ -37,10 +42,9 @@ function RightSection() {
           ],
         }),
       });
-
       const response = await res.json();
       console.log(response);
-      setQuestion(response?.question?.[0]?.content)
+      setLoading(false);
       await handleStreamingResponse(response?.answer?.[0]?.message.content)
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -54,13 +58,13 @@ function RightSection() {
         <div className="flex-1 overflow-hidden">
           <div className="flex flex-col text-sm h-screen bg-lightBlack">
             <div className="text-gray-800 w-full max-w-2xl h-full flex flex-col px-6 min-w-full">
-              {!question && (
+              {!question &&(
                 <h1 className="text-4xl text-gray-100 font-semibold text-center mt-[20vh] mx-auto mb-16">
                   ChatGPT
                 </h1>
               )}
-              {question && (
-                <QuestionAnswer answer={answer} question={question} />
+              {question &&(
+                <QuestionAnswer answer={loading?'':answer} question={question} />
               )}
             </div>
             <div className="w-full h-48 flex-shrink-0"></div>
@@ -88,7 +92,7 @@ function RightSection() {
             <span className="text-gray-200 underline underline-offset-2">
               This is a skills demonstrative project made by Suryansh Kapoor.
             </span>
-            <p>Free instance types (server) will spin-down after 15 minutes of inactivity, then will spin back up when the next request is made, and that restart can take some time.</p>
+            <p>Free instance types (server) will spin-down after few minutes of inactivity, then will spin back up when the next request is made, and that restart can take some time.</p>
           </div>
         </div>
       </main>

@@ -1,3 +1,4 @@
+import './questionAnswer.css'
 const QuestionAnswer = ({ answer, question }) => {
   
 	return (
@@ -11,7 +12,7 @@ const QuestionAnswer = ({ answer, question }) => {
 		<div className="flex w-full">
 		  <div className="flex text-white gap-7 w-full">
 			<img className="w-8 h-8" src="./chatgpt-icon.png" alt="chatgpt" />
-			<p className="overflow-hidden text-ellipsis max-w-full">{answer}</p>
+			<p className="overflow-hidden text-ellipsis max-w-full">{answer}<span id="cursor"> | </span></p>
 		  </div>
 		</div>
 	  </div>
