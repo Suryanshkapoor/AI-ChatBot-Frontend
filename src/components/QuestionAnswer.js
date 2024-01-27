@@ -1,6 +1,4 @@
-const QuestionAnswer = ({ responses }) => {
-	const question = responses?.question?.[0]?.content;
-	const answer = responses?.answer?.[0]?.message.content;
+const QuestionAnswer = ({ answer, question }) => {
   
 	return (
 	  <div className="mx-20 max-w-3xl flex flex-col items-start">
