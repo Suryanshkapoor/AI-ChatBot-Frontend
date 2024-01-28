@@ -1,5 +1,5 @@
 import { PlaneIcon } from "../assets/icons";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import QuestionAnswer from "./QuestionAnswer";
 
 function RightSection() {
@@ -7,45 +7,58 @@ function RightSection() {
   const [answer, setanswer] = useState([]);
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(false);
-
-
+  const isMounted = useRef(true);
 
 
   const handleStreamingResponse = async (response) => {
-    
-    
     for (const word of response) {
+      if (!isMounted.current || loading) {
+        return;
+      }
       setanswer((prevanswer) => [...prevanswer, word]);
-      await new Promise(resolve => setTimeout(resolve, 20));
+      await new Promise((resolve) => setTimeout(resolve, 15));
     }
   };
 
+  useEffect(() => {
+    setanswer([]);
+    return () => {
+      isMounted.current = false;
+    };
+  }, [question]);
+
+
+  
+
   const handleSubmit = async (e) => {
-    setQuestion(prompt)
+    setQuestion(prompt);
+    setLoading(true);
     e.preventDefault();
     setPrompt("");
-    setanswer([]);
-    setLoading(true);
 
     try {
-      const res = await fetch("https://ai-server-q4ey.onrender.com/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messages: [
-            {
-              role: "user",
-              content: prompt,
-            },
-          ],
-        }),
-      });
+      const res = await fetch(
+        "https://ai-server-q4ey.onrender.com/api/chat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            messages: [
+              {
+                role: "user",
+                content: prompt,
+              },
+            ],
+          }),
+        }
+      );
       const response = await res.json();
       console.log(response);
       setLoading(false);
-      await handleStreamingResponse(response?.answer?.[0]?.message.content)
+      isMounted.current = true;
+      handleStreamingResponse(response?.answer?.[0]?.message.content);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -57,7 +70,7 @@ function RightSection() {
       <main className="relative h-full w-full flex flex-col overflow-hidden items-stretch flex-1">
         <div className="flex-1 overflow-hidden">
           <div className="flex flex-col text-sm h-screen bg-lightBlack">
-            <div className="text-gray-800 w-full max-w-2xl h-full flex flex-col px-6 min-w-full">
+            <div className="text-gray-800 w-full max-w-2xl overflow-x-hidden overflow-y-scroll flex flex-col px-6 min-w-full">
               {!question &&(
                 <h1 className="text-4xl text-gray-100 font-semibold text-center mt-[20vh] mx-auto mb-16">
                   ChatGPT
