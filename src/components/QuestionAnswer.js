@@ -12,7 +12,7 @@ const QuestionAnswer = ({ answer, question }) => {
 		<div className="flex w-full">
 		  <div className="flex text-base text-gray-300 gap-7 w-full">
 			<img className="w-8 h-8" src="./chatgpt-icon.png" alt="chatgpt" />
-			<pre className="text-wrap max-w-full">{answer}<span id="cursor"> | </span></pre>
+			<pre className="font-sans text-wrap max-w-full">{answer}<span id="cursor"> | </span></pre>
 		  </div>
 		</div>
 	  </div>
