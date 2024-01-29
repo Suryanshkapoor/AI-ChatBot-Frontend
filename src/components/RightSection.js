@@ -9,6 +9,13 @@ function RightSection() {
   const [loading, setLoading] = useState(false);
   const isMounted = useRef(true);
 
+  const scrollContainerRef = useRef(null);
+
+	useEffect(() => {
+		if (scrollContainerRef.current) {
+		scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+		}
+	}, [answer]);
 
   const handleStreamingResponse = async (response) => {
     for (const word of response) {
@@ -70,7 +77,7 @@ function RightSection() {
       <main className="relative h-full w-full flex flex-col overflow-hidden items-stretch flex-1">
         <div className="flex-1 overflow-hidden">
           <div className="flex flex-col text-sm h-screen bg-lightBlack">
-            <div className="text-gray-800 w-full max-w-2xl overflow-x-hidden overflow-y-scroll flex flex-col px-6 min-w-full">
+            <div ref={scrollContainerRef} className="text-gray-800 w-full max-w-2xl overflow-x-hidden overflow-y-scroll scroll-auto flex flex-col px-6 min-w-full">
               {!question &&(
                 <h1 className="text-4xl text-gray-100 font-semibold text-center mt-[20vh] mx-auto mb-16">
                   ChatGPT
