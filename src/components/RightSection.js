@@ -23,7 +23,7 @@ function RightSection() {
         return;
       }
       setanswer((prevanswer) => [...prevanswer, word]);
-      await new Promise((resolve) => setTimeout(resolve, 15));
+      await new Promise((resolve) => setTimeout(resolve, 5));
     }
   };
 
@@ -62,7 +62,7 @@ function RightSection() {
         }
       );
       const response = await res.json();
-      console.log(response);
+      console.log(response?.answer?.[0]?.message.content);
       setLoading(false);
       isMounted.current = true;
       handleStreamingResponse(response?.answer?.[0]?.message.content);

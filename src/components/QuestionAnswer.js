@@ -10,9 +10,9 @@ const QuestionAnswer = ({ answer, question }) => {
 		  </div>
 		</div>
 		<div className="flex w-full">
-		  <div className="flex font-sans text-base text-gray-300 gap-7 w-full">
+		  <div className="flex text-base text-gray-300 gap-7 w-full">
 			<img className="w-8 h-8" src="./chatgpt-icon.png" alt="chatgpt" />
-			<p className="overflow-hidden text-ellipsis max-w-full">{answer}<span id="cursor"> | </span></p>
+			<pre className="text-wrap max-w-full">{answer}<span id="cursor"> | </span></pre>
 		  </div>
 		</div>
 	  </div>
