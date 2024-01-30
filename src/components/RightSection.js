@@ -62,10 +62,9 @@ function RightSection() {
         }
       );
       const response = await res.json();
-      console.log(response?.answer?.[0]?.message.content);
       setLoading(false);
       isMounted.current = true;
-      handleStreamingResponse(response?.answer?.[0]?.message.content);
+      await handleStreamingResponse(response?.answer?.[0]?.message.content);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
