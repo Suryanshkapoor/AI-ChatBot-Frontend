@@ -23,7 +23,7 @@ function RightSection() {
         return;
       }
       setanswer((prevanswer) => [...prevanswer, word]);
-      await new Promise((resolve) => setTimeout(resolve, 5));
+      await new Promise((resolve) => setTimeout(resolve, 1));
     }
   };
 
