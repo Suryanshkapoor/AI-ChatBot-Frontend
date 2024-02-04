@@ -61,10 +61,11 @@ function RightSection() {
           }),
         }
       );
-      const response = await res.json();
+      const reader = res.body.getReader();
+      const response = await reader.read()
       setLoading(false);
       isMounted.current = true;
-      await handleStreamingResponse(response?.answer?.[0]?.message.content);
+      await handleStreamingResponse(new TextDecoder().decode(response.value));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
