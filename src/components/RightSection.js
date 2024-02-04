@@ -96,7 +96,7 @@ function RightSection() {
             onSubmit={handleSubmit}
           >
             <div className="relative flex h-full flex-1 flex-col">
-              <div className="flex flex-col w-full flex-grow py-3 relative border border-black/10 dark:border-gray-900/50 text-white rounded-md bg-[rgba(64,65,79, var(--tw-bg-opacity))]">
+              <div className="flex flex-col w-full flex-grow py-3 relative border-black/10 dark:border-gray-900/50 text-white rounded-md bg-[rgba(64,65,79, var(--tw-bg-opacity))]">
                 <input
                   className="m-0 rounded-2xl w-full resize-none border border-gray-400 bg-transparent p-5 pl-9 focus:ring-0 focus-visible:ring-0 outline-none overflow-y-hidden h-[23px]"
                   value={prompt}
